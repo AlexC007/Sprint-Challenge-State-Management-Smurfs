@@ -5,6 +5,7 @@ const initialState= {
     addSmurf: false,
     smurf:[],
     error: "",
+   
 
 }
 

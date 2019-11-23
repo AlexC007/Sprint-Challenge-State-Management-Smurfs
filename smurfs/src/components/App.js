@@ -1,17 +1,32 @@
 import React, { Component } from "react";
 import "./App.css";
+import SmurfList from './smurfList';
+import Form from './Form';
+import {connect} from 'react-redux';
+import {smurfData, addSmurf} from './actions/index';
+
 class App extends Component {
-  
+
+  componentDidMount(){
+    this.props.smurfData();
+  }
   render() {
     return (
       <div className="App">
-        <h1>SMURFS! 2.0 W/ Redux</h1>
-        <div>Welcome to your state management version of Smurfs!</div>
-        <div>Start inside of your `src/index.js` file!</div>
-        <div>Have fun!</div>
+        <h2>Blue mini me</h2>
+        <SmurfList smurf={this.props.smurf}/>
+        <Form addSmurf={this.props.addSmurf}/>
+        
       </div>
     );
   }
 }
 
-export default App;
+
+const mapStateToProps = state => {
+  return{
+  addSmurf: state.addSmurf,
+  smurf: state.smurf
+  }
+}
+export default connect(mapStateToProps, {smurfData, addSmurf})(App);
